@@ -301,7 +301,7 @@ class GeoJSON2Image
             if (array_key_exists('line_border_color', $draw_options)) {
                 $border_color = imagecolorallocate($gd, $draw_options['line_border_color'][0], $draw_options['line_border_color'][1], $draw_options['line_border_color'][2]);
             } else {
-                $border_color = imagecolorallocate($gd, 0, 0, 0);
+                $border_color = imagecolorallocate($gd, 87, 197, 40);
             }
             if (array_key_exists('line_border_size', $draw_options)) {
                 $border_size = $draw_options['line_border_size'];
@@ -346,8 +346,8 @@ class GeoJSON2Image
         $this->_boundry = $boundry;
     }
 
-    protected $_width = 400;
-    protected $_height = 400;
+    protected $_width = 200;
+    protected $_height = 200;
 
     public function setSize($width, $height)
     {
@@ -369,14 +369,14 @@ class GeoJSON2Image
         imagefill($gd, 0, 0, $bg_color);
         $boundry[4] = 0;
         if ($boundry[1] > $boundry[0]) {
-            self::drawJSON($gd, $this->json, $boundry, $this->_width, $this->_height);
+            self::drawJSON($gd, $this->json, $boundry, $this->_width - 50, $this->_height - 50);
         } else {
             $boundry[1] += 360;
-            self::drawJSON($gd, $this->json, $boundry, $this->_width, $this->_height);
+            self::drawJSON($gd, $this->json, $boundry, $this->_width - 50, $this->_height - 50);
 
             $boundry[1] -= 360;
             $boundry[0] -= 360;
-            self::drawJSON($gd, $this->json, $boundry, $this->_width, $this->_height);
+            self::drawJSON($gd, $this->json, $boundry, $this->_width - 50, $this->_height - 50);
         }
 
         if (is_null($file)) {
